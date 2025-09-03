@@ -9,15 +9,21 @@ import axios from 'axios'
 
 const NavBar = () => {
 
+  const user = useSelector(store=>store.user)
+
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   const handleLogout = async () =>{
-try{
-  await axios.post(BASE_URL+"/logout",
+
+    try{
+  await axios.post(
+    BASE_URL+
+    "/logout",
     {},
-    {withCredentials:true})
+    {withCredentials:true}
+   )
 
   dispatch(removeUser())
 
@@ -26,15 +32,13 @@ try{
 catch(err){
   console.error(err)
 }
-
   
-  }
+}
 
-  const user = useSelector(store=>store.user)
   return (
          <div className="navbar bg-base-100 shadow-sm">
   <div className="flex-1">
-    <Link to="/" className="btn btn-ghost text-xl">Dev Tinder</Link>
+    <Link to="/feed" className="btn btn-ghost text-xl">Dev Tinder</Link>
   </div>
   {user && (
   
@@ -57,7 +61,8 @@ catch(err){
             <span className="badge">New</span>
           </Link>
         </li>
-        <li><a>Settings</a></li>
+        <li><Link to="/connections">Connections</Link></li>
+        <li><Link to="/requests">Requests</Link></li>
         <li><a onClick={handleLogout}>Logout</a></li>
       </ul>
     </div>
