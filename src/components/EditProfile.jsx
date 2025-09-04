@@ -1,22 +1,20 @@
 import axios from 'axios'
 import {useState} from 'react'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import { BASE_URL } from '../utils/constant'
 import { addUser } from '../utils/userSlice'
 import UserCard from './UserCard'
 
 
-const EditProfile = () => {
+const EditProfile = ({user}) => {
 
-  const userData = useSelector((store) => store.user)
-
-  const [firstName, setFirstName] = useState(userData.firstName)
-  const [lastName, setLastName] = useState(userData.lastName)
-  const [age, setAge] = useState(userData.age || "" )
-  const [gender, setGender] = useState(userData.gender || "")
-  const [photoURL, setPhotoURL] = useState(userData.photoURL || "")
-  const [about, setAbout] = useState(userData.about || "")
+  const [firstName, setFirstName] = useState(user.firstName)
+  const [lastName, setLastName] = useState(user.lastName)
+  const [age, setAge] = useState(user.age || "" )
+  const [gender, setGender] = useState(user.gender || "")
+  const [photoURL, setPhotoURL] = useState(user.photoURL || "")
+  const [about, setAbout] = useState(user.about || "")
 
   const [error, setError] = useState("")
   const [showToast, setShowToast] = useState(false)
@@ -24,10 +22,10 @@ const EditProfile = () => {
   const dispatch = useDispatch()
 
   const handleEditProfile = async () =>{
+      setError("")
 
     try{
 
-      setError("")
     const res = await axios.patch(BASE_URL+"/profile/edit",
       {
         firstName,
@@ -43,13 +41,13 @@ const EditProfile = () => {
 
     setShowToast(true)
     setTimeout(()=>{
-      setShowToast(false)
+      setShowToast(false);
     },3000)
 
 
     }
     catch(err){
-      setError(err?.response?.data)
+      setError(err.response.data)
     }
   }
 
@@ -102,6 +100,12 @@ const EditProfile = () => {
        Save Profile
       </button>
     </div>
+  </div>
+</div>
+</div>
+      <div className='flex justify-center items-center my-20 p-20'>
+      <UserCard user={user} />
+</div>
      {showToast && (
   <div className="toast toast-center">
 
@@ -110,15 +114,6 @@ const EditProfile = () => {
   </div>
 </div>)
 }
-
-  </div>
-
-
-</div>
-</div>
-  <div className='flex justify-center items-center my-20 p-20'>
-      <UserCard user={userData} />
-</div>
 </div>
   )
 }
