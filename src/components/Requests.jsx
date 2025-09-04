@@ -61,7 +61,7 @@ const Requests = () => {
     No requests found</h1>
 
    return (
-    <div className="text-center my-10">
+    <div className="text-center mx-10  rounded-2xl my-10">
       <h1 className="text-bold text-white text-3xl">Requests</h1>
 
       {requests.map((request) => {
@@ -71,12 +71,12 @@ const Requests = () => {
         return (
           <div
             key={_id}
-            className=" flex justify-between items-center m-4 p-4 rounded-lg bg-base-300  mx-auto"
+            className=" flex justify-between  m-4 p-4 rounded-lg bg-base-300 "
           >
             <div>
               <img
                 alt="photo"
-                className="w-20 h-20 rounded-full"
+                className="w-30 h-30 rounded-full"
                 src={photoURL}
               />
             </div>
@@ -87,9 +87,9 @@ const Requests = () => {
               {age && gender && <p>{age + ", " + gender}</p>}
               <p>{about}</p>
             </div>
-            <div>
+            <div className="flex mt-10">
               <button
-                className="btn btn-primary mx-2"
+                className="btn btn-primary mx-2 "
                 onClick={() => reviewRequest("rejected", request._id)}
               >
                 Reject

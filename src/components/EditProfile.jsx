@@ -54,12 +54,11 @@ const EditProfile = () => {
   }
 
   return (
-
+<div className=" flex justify-center">
     <div className = "flex justify-center items-center my-20">
     <div className="card bg-base-300 w-96 shadow-sm">
   <div className="card-body">
     <h2 className="card-title justify-center"> Edit Profile</h2>
-    
      <div>
           <>
              <fieldset className="fieldset">
@@ -113,10 +112,12 @@ const EditProfile = () => {
 }
 
   </div>
-  <div className='flex justify-center'>
-      <UserCard user={userData} />
-</div>
 
+
+</div>
+</div>
+  <div className='flex justify-center items-center my-20 p-20'>
+      <UserCard user={userData} />
 </div>
 </div>
   )

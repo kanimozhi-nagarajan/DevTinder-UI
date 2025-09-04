@@ -36,8 +36,9 @@ if(connections.length === 0)
   return <h1 className='text-center mt-5 text-2xl'>
     No connections found</h1>
   return ( 
-    <div className="card bg-base-100 w-96 shadow-sm">
-      <h1 className='text-center mt-5 text-2xl'>Connections</h1>
+    <div className="flex justify-center items-center my-2 p-2">
+    <div className="card bg-base-300 w-96 shadow-sm">
+      <h1 className='text-center  text-2xl'>Connections</h1>
 
       {connections.map((connection) =>{
         const {_id,photoURL,firstName,lastName,age,gender,about}=
@@ -45,19 +46,18 @@ if(connections.length === 0)
         return(  
           <div
            key={_id} 
-           className="card w-96 bg-base-100 rounded-2xl shadow-xl">
-            <figure className="px-10 pt-10">
+           className="card w-100 bg-base-100 rounded-2xl shadow-xl">
+            <figure className="px-10 pt-10 ">
     <img
       src={photoURL}
       alt="photoURL" />
   </figure>
   <div className="card-body">
-    <h2 className="card-title">{firstName} {lastName}</h2>
+    <h2 className="card-title justify-center">{firstName} {lastName}</h2>
     {age && gender && 
      (   
       <>
-       <h4 className="card-title">{age}</h4>
-       <h4 className="card-title">{gender}</h4>
+       <h4 className="card-title justify-center">{age}  {gender}</h4>
      </>
     )}
 
@@ -67,6 +67,7 @@ if(connections.length === 0)
   </div>
         )
       })}
+</div>
 </div>
   )
 }
